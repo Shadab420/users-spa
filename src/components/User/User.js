@@ -6,29 +6,36 @@ import { Row, Col, Button } from 'react-bootstrap';
 
 //font-awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faUserPlus, faUserMinus, faMapMarkerAlt, faBriefcase, faUsers } from '@fortawesome/free-solid-svg-icons'
 
 const User = (props) => {
 
-    const { name, address:{ city }, company} = props.user;
+    const {id, name, age, picture, address:{ street, city, zipcode }, company} = props.user;
+    const friends = props.friends;
 
-    
+    const addUserBtn = friends.find(friend => friend.id == id) > -1 ?(
+                            <Button variant="outline-success" onClick = {()=>props.handleAddFriend(props.user)}><FontAwesomeIcon icon={faUsers} /> { ` Friend!` } </Button>
+                        ):(
+                            <Button variant="outline-success" onClick = {()=>props.handleAddFriend(props.user)}><FontAwesomeIcon icon={faUserPlus} /> { ` Add Friend` } </Button>
+                        )
 
     return (
         <div className="user">
             <Row onMouseOver={() => {props.handleMouseOver(props.user)}}>
                 <Col md={4}>
-                    <img src="" alt="User image Thumbnail"/>
+                    <img src={picture} alt="User image Thumbnail"/>
                 </Col>
                 <Col md={8}>
                     <Row>
                         <Col md={6}>
                             <h3>{name}</h3>
-                            <p>Lives at: {city}</p> 
-                            <p>Works at: {company.name}</p>
+                            <h5>{ `${age} years old.` }</h5>
+                            <h6><FontAwesomeIcon icon={faMapMarkerAlt} />{ ` ${street}, ${city}, zipcode - ${zipcode}`}</h6>
+                            <h6><FontAwesomeIcon icon={faBriefcase} />{ ` ${company.name}`}</h6>
                         </Col>
                         <Col md={6}>
-                            <Button variant="outline-success" onClick = {()=>props.handleAddFriend(props.user)}><FontAwesomeIcon icon={faPlusCircle} />Add Friend</Button>
+                            { addUserBtn}
+                            
                         </Col>
                         
                     </Row>

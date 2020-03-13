@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './data/users.json';
 import './App.css';
 
 //Bootstrap
@@ -21,10 +22,12 @@ function App() {
   const [count, setCount] = useState(0);
   const [friends, setFriends] = useState([]);
 
+  
+  
+
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(res => res.json())
-      .then(data => setUsers(data));
+    const usersData = require('./data/users.json');
+    setUsers(usersData.users);
   }, [])
   
   const handleMouseOver = (selectedUser) => {
@@ -46,9 +49,18 @@ function App() {
             <Friend friends={friends}></Friend>
           </Col>
           <Col md={6}>
-            {
-              users.map((user,index) => <User user={user} key={index} handleMouseOver={handleMouseOver} handleAddFriend={handleAddFriend}></User>  )
-            }
+            <div className="users">
+              <h2>Users List</h2>
+              {
+                users.map((user,index) => {
+
+                  let isFriend = false;
+
+
+                  return <User user={user} key={index} handleMouseOver={handleMouseOver} handleAddFriend={handleAddFriend} friends={friends}></User>  
+                })
+              }
+            </div>
           </Col>
           <Col md={3}>
             <UserDetail user={currentUser}></UserDetail>

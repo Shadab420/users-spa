@@ -1,3 +1,15 @@
 .user{
-   background-color: rgb(235, 250, 235); 
+   background-color: rgb(220, 247, 220);
+   /* border: 1px solid rgb(80, 124, 247); */
+   border: 1px solid #333;
+   padding: 20px;
+   margin: 15px;
+   transition: 0.3s all ease-in-out;
+   border-radius: 30px;
+}
+
+.user:hover{
+    box-shadow: 5px 5px 30px;
+    transform: scale(1.1);
+    border: none;
 }

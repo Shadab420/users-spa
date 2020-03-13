@@ -1,4 +1,21 @@
 .user-detail{
-    background-color: rgb(212, 236, 245);
+    background-color: rgb(219, 237, 243);
     min-height: 450px;
+    margin-top: 30px;
+    transition: 0.3s all ease-in-out;
+    border-radius: 30px;
+}
+
+.user-detail:hover{
+    box-shadow: 5px 5px 10px;
+    transform: scale(1.05);
+    box-shadow: 5px 0px 20px rgb(204, 220, 250);
+}
+
+.user-detail h2{
+    background-color: rgb(221, 194, 247);
+}
+
+.user-info{
+    padding: 20px;
 }
